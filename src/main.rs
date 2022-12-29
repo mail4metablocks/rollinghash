@@ -46,16 +46,6 @@ fn diff<T: Hash + Eq + Clone>(original: &[T], updated: &[T], chunk_size: usize) 
     (reused_chunks, synchronized_chunks)
 }
 
-#[test]
-fn test_diff() {
-    let original = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-    let updated = [1, 2, 3, 4, 5, 6, 8, 9, 10];
-
-    let (reused_chunks, synchronized_chunks) = diff(&original, &updated, 3);
-
-    assert_eq!(reused_chunks, [0, 1, 2]);
-    assert_eq!(synchronized_chunks, [6, 8, 9, 10]);
-}
 
 fn main() {
     let original = [1, 2, 3, 4, 5, 6, 7, 8, 9];
