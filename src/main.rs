@@ -2,6 +2,9 @@ use std::collections::HashMap;
 use std::hash::Hasher;
 use std::clone::Clone;
 use std::collections::hash_map::DefaultHasher;
+use std::hash::Hash;
+use std::cmp::Eq;
+
 
 
 fn rolling_hash<T: Hash + Eq>(data: &[T], chunk_size: usize) -> Vec<u64> {
