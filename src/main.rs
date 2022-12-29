@@ -1,6 +1,8 @@
 use std::collections::HashMap;
 use std::hash::{Hash, Hasher};
 use std::clone::Clone;
+use std::collections::hash_map::DefaultHasher;
+
 
 fn rolling_hash<T: Hash + Eq>(data: &[T], chunk_size: usize) -> Vec<u64> {
     let mut hashes = Vec::new();
