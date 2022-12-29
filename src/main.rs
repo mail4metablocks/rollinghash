@@ -49,7 +49,7 @@ fn test_diff() {
     let (reused_chunks, synchronized_chunks) = diff(&original, &updated, 3);
 
     assert_eq!(reused_chunks, [0, 1, 2]);
-    assert_eq!(synchronized_chunks, [8, 9, 10]);
+    assert_eq!(synchronized_chunks, [6, 8, 9, 10]);
 }
 
 fn main() {
