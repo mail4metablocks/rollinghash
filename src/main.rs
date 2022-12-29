@@ -19,7 +19,7 @@ fn rolling_hash<T: Hash + Eq>(data: &[T], chunk_size: usize) -> Vec<u64> {
     hashes
 }
 
-fn diff<T: Hash + Eq>(original: &[T], updated: &[T], chunk_size: usize) -> (Vec<usize>, Vec<T>) {
+fn diff<T: Hash + Eq + Clone>(original: &[T], updated: &[T], chunk_size: usize) -> (Vec<usize>, Vec<T>) {
     let original_hashes = rolling_hash(original, chunk_size);
     let updated_hashes = rolling_hash(updated, chunk_size);
 
