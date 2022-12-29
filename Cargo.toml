@@ -1,1 +1,7 @@
+[package]
+name = "rollinghash"
+version = "0.1.0"
+
+[dependencies]
+hashbrown = "0.9"
 
