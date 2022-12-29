@@ -1,5 +1,6 @@
 use std::collections::HashMap;
 use std::hash::{Hash, Hasher};
+use std::clone::Clone;
 
 fn rolling_hash<T: Hash + Eq>(data: &[T], chunk_size: usize) -> Vec<u64> {
     let mut hashes = Vec::new();
@@ -19,7 +20,7 @@ fn rolling_hash<T: Hash + Eq>(data: &[T], chunk_size: usize) -> Vec<u64> {
     hashes
 }
 
-fn diff<T: Hash + Eq>(original: &[T], updated: &[T], chunk_size: usize) -> (Vec<usize>, Vec<T>) {
+fn diff<T: Hash + Eq + Clone>(original: &[T], updated: &[T], chunk_size: usize) -> (Vec<usize>, Vec<T>) {
     let original_hashes = rolling_hash(original, chunk_size);
     let updated_hashes = rolling_hash(updated, chunk_size);
 
@@ -49,4 +50,14 @@ fn test_diff() {
 
     assert_eq!(reused_chunks, [0, 1, 2]);
     assert_eq!(synchronized_chunks, [8, 9, 10]);
+}
+
+fn main() {
+    let original = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    let updated = [1, 2, 3, 4, 5, 6, 8, 9, 10];
+
+    let (reused_chunks, synchronized_chunks) = diff(&original, &updated, 3);
+
+    println!("Reused chunks: {:?}", reused_chunks);
+    println!("Synchronized chunks: {:?}", synchronized_chunks);
 }
